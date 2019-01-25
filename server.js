@@ -1,9 +1,11 @@
 // nodemon server.js -e js,hbs
+// npm start
 
 const express = require('express');
 const fs = require('fs');
 const hbs = require('hbs');
 
+const port = process.env.PORT || 3000;
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -21,9 +23,9 @@ app.use((req, res, next) => {
   next();
 });
 // промежуточное ПО останавливает запуск
-app.use((req, res, next) => {
-  res.render('maitenanse.hbs');
-});
+// app.use((req, res, next) => {
+//   res.render('maitenanse.hbs');
+// });
 
 app.use(express.static(__dirname + '/public'));
 
@@ -58,6 +60,6 @@ app.get('/bad', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Server is up on port 3000');
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
 });
